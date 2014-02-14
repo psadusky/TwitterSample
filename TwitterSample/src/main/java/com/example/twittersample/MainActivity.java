@@ -193,6 +193,7 @@ public class MainActivity extends Activity {
                         }
                     });
                     thread.start();
+                    thread.join();
 
                     // Shared Preferences
                     Editor e = mSharedPreferences.edit();
@@ -259,9 +260,6 @@ public class MainActivity extends Activity {
                                 .getOAuthRequestToken(TWITTER_CALLBACK_URL);
                         MainActivity.this.startActivity(new Intent(Intent.ACTION_VIEW, Uri
                                 .parse(requestToken.getAuthenticationURL())));
-                        Editor e = mSharedPreferences.edit();
-                        e.putBoolean(PREF_KEY_TWITTER_LOGIN, true);
-                        e.commit(); // save changes
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
